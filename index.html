@@ -442,11 +442,15 @@ body {
 
 let current = 0;
 
+function uniquifySvg(svg, suffix) {
+  return svg.replace(/id="ig"/g, `id="ig-${suffix}"`).replace(/url\(#ig\)/g, `url(#ig-${suffix})`);
+}
+
 function renderCarousel() {
   const track = document.getElementById('coins-track');
   track.innerHTML = '';
 
-  const offsets = [-2, -1, 0, 1, 2];
+  const offsets = [-1, 0, 1];
 
   offsets.forEach(offset => {
     const idx = ((current + offset) % PLATFORMS.length + PLATFORMS.length) % PLATFORMS.length;
@@ -471,7 +475,7 @@ function renderCarousel() {
       coin.setAttribute('aria-hidden', 'true');
     }
 
-    coin.innerHTML = platform.svg;
+    coin.innerHTML = uniquifySvg(platform.svg, `coin-${offset}`);
     track.appendChild(coin);
   });
 
@@ -492,7 +496,7 @@ renderCarousel();
 
 function openPanel(idx) {
   const platform = PLATFORMS[idx];
-  document.getElementById('panel-icon').innerHTML = platform.svg;
+  document.getElementById('panel-icon').innerHTML = uniquifySvg(platform.svg, 'panel');
   document.getElementById('panel-name').textContent = platform.name;
   document.getElementById('panel-handle').textContent = platform.handle;
 

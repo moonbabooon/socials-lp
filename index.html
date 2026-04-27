@@ -105,32 +105,9 @@ body::before {
 /* ── Carousel ── */
 .carousel-section {
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
   margin-bottom: 14px;
 }
 
-.nav-btn {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: #f0f3fa;
-  border: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  flex-shrink: 0;
-  font-size: 0.95rem;
-  color: #003087;
-  transition: background 0.15s, transform 0.12s, box-shadow 0.15s;
-  user-select: none;
-  -webkit-user-select: none;
-}
-.nav-btn:hover  { background: #003087; color: #fff; box-shadow: 0 3px 12px rgba(0,48,135,0.25); transform: scale(1.08); }
-.nav-btn:active { transform: scale(0.93); }
 
 /* Coins track — evenly spaces all 4 */
 .coins-track {
@@ -370,9 +347,7 @@ body::before {
 
     <!-- Carousel -->
     <section class="carousel-section" aria-label="Social media accounts">
-      <button class="nav-btn" id="btn-left" aria-label="Previous">&#8592;</button>
       <div class="coins-track" id="coins-track" role="list"></div>
-      <button class="nav-btn" id="btn-right" aria-label="Next">&#8594;</button>
     </section>
 
     <div class="platform-label" id="platform-label" aria-live="polite"></div>
@@ -485,15 +460,6 @@ function renderDots() {
   });
 }
 
-document.getElementById('btn-left').addEventListener('click', () => {
-  current = (current - 1 + PLATFORMS.length) % PLATFORMS.length;
-  renderCarousel();
-});
-
-document.getElementById('btn-right').addEventListener('click', () => {
-  current = (current + 1) % PLATFORMS.length;
-  renderCarousel();
-});
 
 renderCarousel();
 

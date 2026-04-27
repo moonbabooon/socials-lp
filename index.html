@@ -2,133 +2,143 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="theme-color" content="#003087">
   <title>Follow Yardi on Social Media — #YASCCanada</title>
   <style>
-/* ── Reset & base ── */
+/* ── Reset ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { height: 100%; -webkit-tap-highlight-color: transparent; }
 
-html {
-  height: 100%;
-  -webkit-tap-highlight-color: transparent;
-}
-
+/* ── Page ── */
 body {
-  min-height: 100%;
-  background: linear-gradient(170deg, #f5f7fa 0%, #eaecf5 100%);
+  min-height: 100dvh;
+  background: #eef1f8;
   font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 28px 20px 36px;
+  justify-content: center;
+  padding: env(safe-area-inset-top, 24px) 24px env(safe-area-inset-bottom, 24px);
+  overflow: hidden;
+}
+
+/* Subtle radial glow behind content */
+body::before {
+  content: '';
+  position: fixed;
+  top: -10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, rgba(0,48,135,0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* ── Card wrapper ── */
+.card {
+  width: 100%;
+  max-width: 360px;
+  background: #fff;
+  border-radius: 28px;
+  box-shadow:
+    0 2px 4px rgba(0,48,135,0.04),
+    0 8px 24px rgba(0,48,135,0.09),
+    0 24px 48px rgba(0,48,135,0.06);
+  padding: 32px 24px 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: 0;
 }
 
 /* ── Header ── */
-.page-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  max-width: 360px;
+.logo-pill {
+  font-size: 0.7rem;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+  color: #fff;
+  background: #003087;
+  padding: 5px 14px;
+  border-radius: 5px;
   margin-bottom: 20px;
 }
 
-.logo-pill {
-  font-size: 0.75rem;
-  font-weight: 900;
-  letter-spacing: 0.15em;
-  color: #fff;
-  background: #003087;
-  padding: 5px 16px;
-  border-radius: 5px;
-  margin-bottom: 16px;
-}
-
 .hashtag {
-  font-size: 1.1rem;
+  font-size: 1.25rem;
   font-weight: 900;
   color: #003087;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.02em;
   text-align: center;
-  margin-bottom: 5px;
+  margin-bottom: 6px;
 }
 
 .headline {
-  font-size: 0.88rem;
+  font-size: 0.72rem;
   font-weight: 800;
   color: #001a4d;
-  letter-spacing: 0.07em;
+  letter-spacing: 0.1em;
   text-align: center;
   text-transform: uppercase;
   margin-bottom: 10px;
 }
 
 .body-copy {
-  font-size: 0.67rem;
-  color: #4a6080;
+  font-size: 0.68rem;
+  color: #5a6f8a;
   text-align: center;
-  line-height: 1.6;
-  max-width: 280px;
-  margin-bottom: 18px;
+  line-height: 1.65;
+  max-width: 268px;
+  margin-bottom: 22px;
 }
 
 .divider {
-  width: 36px;
+  width: 32px;
   height: 2px;
-  background: #003087;
+  background: linear-gradient(90deg, transparent, #003087, transparent);
   border-radius: 2px;
-  opacity: 0.25;
+  margin-bottom: 24px;
+  opacity: 0.3;
 }
 
 /* ── Carousel ── */
 .carousel-section {
+  width: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 10px;
-  width: 100%;
-  max-width: 360px;
-  margin-bottom: 12px;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 14px;
 }
 
 .nav-btn {
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
-  background: #fff;
-  border: 1.5px solid #c8d4e8;
-  box-shadow: 0 2px 8px rgba(0, 48, 135, 0.12);
+  background: #f0f3fa;
+  border: none;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   flex-shrink: 0;
-  font-size: 1rem;
-  font-weight: 700;
+  font-size: 0.95rem;
   color: #003087;
-  transition: background 0.15s, box-shadow 0.15s, transform 0.1s;
+  transition: background 0.15s, transform 0.12s, box-shadow 0.15s;
   user-select: none;
   -webkit-user-select: none;
 }
+.nav-btn:hover  { background: #003087; color: #fff; box-shadow: 0 3px 12px rgba(0,48,135,0.25); transform: scale(1.08); }
+.nav-btn:active { transform: scale(0.93); }
 
-.nav-btn:hover {
-  background: #003087;
-  color: #fff;
-  box-shadow: 0 4px 14px rgba(0, 48, 135, 0.3);
-  transform: scale(1.08);
-}
-
-.nav-btn:active { transform: scale(0.95); }
-
+/* Coins track — evenly spaces all 4 */
 .coins-track {
+  flex: 1;
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 10px;
-  flex: 1;
-  height: 96px;
+  justify-content: space-evenly;
+  height: 88px;
 }
 
 /* ── Coins ── */
@@ -137,115 +147,110 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
   position: relative;
   cursor: pointer;
+  flex-shrink: 0;
   transition:
-    transform 0.35s cubic-bezier(.34, 1.4, .64, 1),
-    box-shadow 0.35s ease,
-    opacity 0.35s ease;
-}
-
-.coin svg { display: block; pointer-events: none; }
-
-/* Centre */
-.coin-center {
-  width: 72px;
-  height: 72px;
+    width 0.32s cubic-bezier(.34,1.4,.64,1),
+    height 0.32s cubic-bezier(.34,1.4,.64,1),
+    opacity 0.32s ease,
+    box-shadow 0.32s ease,
+    transform 0.32s cubic-bezier(.34,1.4,.64,1);
   background: #fff;
-  box-shadow: 0 6px 22px rgba(0, 48, 135, 0.22), 0 0 0 2px #003087;
-  z-index: 3;
-  animation: bob 2.6s ease-in-out infinite;
 }
+.coin svg { display: block; pointer-events: none; transition: width 0.32s, height 0.32s; }
 
-.coin-center:hover {
-  box-shadow: 0 12px 30px rgba(0, 48, 135, 0.32), 0 0 0 2px #003087;
-  animation-play-state: paused;
-  transform: translateY(-6px) scale(1.06);
+/* Active coin */
+.coin-active {
+  width: 68px;
+  height: 68px;
+  box-shadow: 0 6px 20px rgba(0,48,135,0.2), 0 0 0 2px #003087;
+  opacity: 1;
+  z-index: 2;
+  animation: bob 2.8s ease-in-out infinite;
 }
+.coin-active svg { width: 38px; height: 38px; }
 
-/* Pulse ring */
-.coin-center::after {
+.coin-active::after {
   content: '';
   position: absolute;
-  inset: -8px;
+  inset: -7px;
   border-radius: 50%;
   border: 2px solid #003087;
   opacity: 0;
-  animation: pulse-ring 2.6s ease-out infinite;
+  animation: pulse-ring 2.8s ease-out infinite;
   pointer-events: none;
 }
 
-/* Near (±1) */
-.coin-near {
+.coin-active:hover {
+  animation-play-state: paused;
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 10px 28px rgba(0,48,135,0.28), 0 0 0 2px #003087;
+}
+
+/* Idle coins */
+.coin-idle {
   width: 52px;
   height: 52px;
-  background: #fff;
-  box-shadow: 0 3px 10px rgba(0, 48, 135, 0.1), 0 0 0 1.5px #d0d8ec;
-  opacity: 0.78;
-  transform: scale(0.88);
-  z-index: 2;
-  animation: bob-near 2.6s ease-in-out infinite;
-  animation-delay: 0.15s;
-}
-
-.coin-near:hover {
-  opacity: 0.96;
-  transform: scale(0.94) translateY(-3px);
-  animation-play-state: paused;
-}
-
-/* Far (±2) */
-.coin-far {
-  width: 38px;
-  height: 38px;
-  background: #fff;
-  box-shadow: 0 2px 6px rgba(0, 48, 135, 0.06), 0 0 0 1px #dde4f0;
-  opacity: 0.35;
-  transform: scale(0.72);
+  box-shadow: 0 2px 8px rgba(0,48,135,0.08), 0 0 0 1.5px #dde4f2;
+  opacity: 0.6;
   z-index: 1;
-  pointer-events: none;
 }
+.coin-idle svg { width: 29px; height: 29px; }
 
-/* SVG sizing per coin type */
-.coin-center svg { width: 40px; height: 40px; }
-.coin-near svg   { width: 29px; height: 29px; }
-.coin-far svg    { width: 21px; height: 21px; }
+.coin-idle:hover {
+  opacity: 0.88;
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 6px 16px rgba(0,48,135,0.14), 0 0 0 1.5px #b0bcd8;
+}
 
 /* ── Animations ── */
 @keyframes bob {
   0%, 100% { transform: translateY(0); }
-  50%       { transform: translateY(-8px); }
-}
-
-@keyframes bob-near {
-  0%, 100% { transform: scale(0.88) translateY(0); }
-  50%       { transform: scale(0.88) translateY(-4px); }
+  50%       { transform: translateY(-7px); }
 }
 
 @keyframes pulse-ring {
-  0%   { opacity: 0.5; transform: scale(0.9); }
-  70%  { opacity: 0;   transform: scale(1.28); }
-  100% { opacity: 0;   transform: scale(1.28); }
+  0%   { opacity: 0.45; transform: scale(0.9); }
+  70%  { opacity: 0;    transform: scale(1.3); }
+  100% { opacity: 0;    transform: scale(1.3); }
 }
 
 /* ── Labels ── */
 .platform-label {
-  font-size: 0.74rem;
+  font-size: 0.72rem;
   font-weight: 800;
   color: #003087;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   text-align: center;
-  margin-bottom: 4px;
-  min-height: 1.2em;
+  min-height: 1.1em;
+  margin-bottom: 5px;
 }
 
 .swipe-hint {
-  font-size: 0.58rem;
-  color: #aabbd0;
+  font-size: 0.56rem;
+  color: #b0bcd0;
   text-align: center;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.03em;
+}
+
+/* ── Dot indicators ── */
+.dots {
+  display: flex;
+  gap: 6px;
+  margin-top: 14px;
+}
+.dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #d0d8ea;
+  transition: background 0.25s, transform 0.25s;
+}
+.dot.active {
+  background: #003087;
+  transform: scale(1.3);
 }
 
 /* ── Follow panel ── */
@@ -253,11 +258,12 @@ body {
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(0, 24, 70, 0.45);
+  background: rgba(0,20,60,0.5);
   z-index: 10;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
   animation: fade-in 0.2s ease;
 }
-
 .panel-backdrop.active { display: block; }
 
 .follow-panel {
@@ -265,70 +271,80 @@ body {
   position: fixed;
   bottom: 0;
   left: 50%;
-  transform: translateX(-50%) translateY(20px);
-  width: min(360px, 100vw);
-  background: linear-gradient(160deg, #002e80, #001a50);
-  border-radius: 24px 24px 0 0;
-  padding: 28px 24px 36px;
+  transform: translateX(-50%) translateY(24px);
+  width: min(400px, 100vw);
+  background: #fff;
+  border-radius: 28px 28px 0 0;
+  padding: 10px 28px 32px;
+  padding-bottom: max(32px, env(safe-area-inset-bottom));
   z-index: 11;
   flex-direction: column;
   align-items: center;
   gap: 10px;
   opacity: 0;
-  transition: transform 0.32s cubic-bezier(.34, 1.3, .64, 1), opacity 0.25s ease;
+  box-shadow: 0 -4px 32px rgba(0,48,135,0.14);
+  transition: transform 0.32s cubic-bezier(.34,1.3,.64,1), opacity 0.22s ease;
 }
-
 .follow-panel.active {
   display: flex;
   opacity: 1;
   transform: translateX(-50%) translateY(0);
 }
 
-.panel-icon svg { width: 60px; height: 60px; display: block; }
-
-.panel-name {
-  font-size: 1.1rem;
-  font-weight: 800;
-  color: #fff;
-  letter-spacing: 0.04em;
+/* Drag handle */
+.panel-handle-bar {
+  width: 36px;
+  height: 4px;
+  background: #dde4f0;
+  border-radius: 2px;
+  margin-bottom: 8px;
 }
 
-.panel-handle {
+.panel-icon { margin-bottom: 2px; }
+.panel-icon svg { width: 64px; height: 64px; display: block; }
+
+.panel-name {
+  font-size: 1.15rem;
+  font-weight: 900;
+  color: #001a4d;
+  letter-spacing: 0.02em;
+}
+
+.panel-handle-text {
   font-size: 0.72rem;
-  color: #7799bb;
+  color: #8899bb;
   letter-spacing: 0.02em;
 }
 
 .panel-btn {
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 260px;
   background: #003087;
   color: #fff;
-  border: none;
-  border-radius: 24px;
-  padding: 10px 28px;
-  font-size: 0.82rem;
+  border-radius: 14px;
+  padding: 14px 24px;
+  font-size: 0.85rem;
   font-weight: 700;
   letter-spacing: 0.04em;
   text-decoration: none;
   cursor: pointer;
-  margin-top: 6px;
-  transition: background 0.15s, transform 0.1s, box-shadow 0.15s;
-  box-shadow: 0 4px 16px rgba(0, 48, 135, 0.4);
+  margin-top: 8px;
+  transition: background 0.15s, transform 0.12s, box-shadow 0.15s;
+  box-shadow: 0 4px 18px rgba(0,48,135,0.32);
 }
-
-.panel-btn:hover {
-  background: #0044bb;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 48, 135, 0.55);
-}
+.panel-btn:hover  { background: #0044bb; transform: translateY(-2px); box-shadow: 0 6px 22px rgba(0,48,135,0.42); }
+.panel-btn:active { transform: scale(0.97); }
 
 .panel-dismiss {
-  font-size: 0.6rem;
-  color: #445566;
-  margin-top: 4px;
+  font-size: 0.58rem;
+  color: #b0bcd0;
+  margin-top: 2px;
 }
 
-/* ── Fade in ── */
+/* ── Keyframes ── */
 @keyframes fade-in {
   from { opacity: 0; }
   to   { opacity: 1; }
@@ -336,59 +352,48 @@ body {
 
 /* ── Reduced motion ── */
 @media (prefers-reduced-motion: reduce) {
-  .coin-center,
-  .coin-near,
-  .coin-center::after {
-    animation: none;
-  }
-  .coin, .nav-btn, .panel-btn, .follow-panel {
-    transition: none;
-  }
-}
-
-.panel-icon svg {
-  width: 64px;
-  height: 64px;
-  display: block;
-}
-
-.follow-panel {
-  padding-bottom: max(36px, env(safe-area-inset-bottom));
+  .coin-active, .coin-active::after { animation: none; }
+  .coin, .nav-btn, .panel-btn, .follow-panel { transition: none; }
 }
   </style>
 </head>
 <body>
 
-  <!-- HEADER -->
-  <header class="page-header">
+  <div class="card">
+
+    <!-- Header -->
     <div class="logo-pill">YARDI</div>
     <div class="hashtag">#YASCCanada</div>
     <h1 class="headline">Stay Connected With Us</h1>
     <p class="body-copy">See event updates, announcements and highlights! Follow us on LinkedIn, Facebook, Instagram and X, and don't forget to tag us and use the official hashtag when sharing your YASC moments.</p>
     <div class="divider"></div>
-  </header>
 
-  <!-- CAROUSEL -->
-  <section class="carousel-section" aria-label="Social media accounts">
-    <button class="nav-btn" id="btn-left" aria-label="Previous">&#8592;</button>
-    <div class="coins-track" id="coins-track" role="list"></div>
-    <button class="nav-btn" id="btn-right" aria-label="Next">&#8594;</button>
-  </section>
-  <div class="platform-label" id="platform-label" aria-live="polite"></div>
-  <div class="swipe-hint">tap centre to follow &nbsp;·&nbsp; arrows to browse</div>
+    <!-- Carousel -->
+    <section class="carousel-section" aria-label="Social media accounts">
+      <button class="nav-btn" id="btn-left" aria-label="Previous">&#8592;</button>
+      <div class="coins-track" id="coins-track" role="list"></div>
+      <button class="nav-btn" id="btn-right" aria-label="Next">&#8594;</button>
+    </section>
 
-  <!-- FOLLOW PANEL -->
+    <div class="platform-label" id="platform-label" aria-live="polite"></div>
+    <div class="swipe-hint">tap to follow &nbsp;·&nbsp; swipe or use arrows</div>
+    <div class="dots" id="dots" aria-hidden="true"></div>
+
+  </div>
+
+  <!-- Follow panel -->
   <div class="panel-backdrop" id="panel-backdrop" aria-hidden="true"></div>
   <div class="follow-panel" id="follow-panel" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="panel-handle-bar"></div>
     <div class="panel-icon" id="panel-icon"></div>
     <div class="panel-name" id="panel-name"></div>
-    <div class="panel-handle" id="panel-handle"></div>
+    <div class="panel-handle-text" id="panel-handle"></div>
     <a class="panel-btn" id="panel-btn" target="_blank" rel="noopener noreferrer"></a>
     <div class="panel-dismiss">tap anywhere to close</div>
   </div>
 
   <script>
-    const PLATFORMS = [
+const PLATFORMS = [
   {
     name: 'LinkedIn',
     handle: 'Yardi',
@@ -415,7 +420,7 @@ body {
     url: 'https://www.instagram.com/yardisystems/?hl=en',
     svg: `<svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
       <defs>
-        <radialGradient id="ig" cx="30%" cy="107%" r="130%">
+        <radialGradient id="ig-SUFFIX" cx="30%" cy="107%" r="130%">
           <stop offset="0%"   stop-color="#ffd600"/>
           <stop offset="30%"  stop-color="#ff6d00"/>
           <stop offset="60%"  stop-color="#e1306c"/>
@@ -423,7 +428,7 @@ body {
           <stop offset="100%" stop-color="#405de6"/>
         </radialGradient>
       </defs>
-      <rect width="40" height="40" rx="20" fill="url(#ig)"/>
+      <rect width="40" height="40" rx="20" fill="url(#ig-SUFFIX)"/>
       <rect x="10" y="10" width="20" height="20" rx="6" stroke="white" stroke-width="2.2" fill="none"/>
       <circle cx="20" cy="20" r="5" stroke="white" stroke-width="2.2" fill="none"/>
       <circle cx="27.2" cy="12.8" r="1.4" fill="white"/>
@@ -442,44 +447,42 @@ body {
 
 let current = 0;
 
-function uniquifySvg(svg, suffix) {
-  return svg.replace(/id="ig"/g, `id="ig-${suffix}"`).replace(/url\(#ig\)/g, `url(#ig-${suffix})`);
+function stampSvg(svg, id) {
+  return svg.replace(/SUFFIX/g, id);
 }
 
 function renderCarousel() {
   const track = document.getElementById('coins-track');
   track.innerHTML = '';
 
-  const offsets = [-1, 0, 1];
-
-  offsets.forEach(offset => {
-    const idx = ((current + offset) % PLATFORMS.length + PLATFORMS.length) % PLATFORMS.length;
-    const platform = PLATFORMS[idx];
-
+  PLATFORMS.forEach((platform, idx) => {
+    const isActive = idx === current;
     const coin = document.createElement('div');
     coin.setAttribute('role', 'listitem');
-
-    if (offset === 0) {
-      coin.className = 'coin coin-center';
-      coin.setAttribute('aria-label', `${platform.name} — tap to follow`);
-      coin.addEventListener('click', () => openPanel(idx));
-    } else if (Math.abs(offset) === 1) {
-      coin.className = 'coin coin-near';
-      coin.setAttribute('aria-label', `Go to ${platform.name}`);
-      coin.addEventListener('click', () => {
-        current = idx;
-        renderCarousel();
-      });
-    } else {
-      coin.className = 'coin coin-far';
-      coin.setAttribute('aria-hidden', 'true');
-    }
-
-    coin.innerHTML = uniquifySvg(platform.svg, `coin-${offset}`);
+    coin.className = isActive ? 'coin coin-active' : 'coin coin-idle';
+    coin.setAttribute('aria-label', isActive
+      ? `${platform.name} — tap to follow`
+      : `Switch to ${platform.name}`);
+    coin.innerHTML = stampSvg(platform.svg, `c${idx}`);
+    coin.addEventListener('click', () => {
+      if (isActive) openPanel(idx);
+      else { current = idx; renderCarousel(); }
+    });
     track.appendChild(coin);
   });
 
   document.getElementById('platform-label').textContent = PLATFORMS[current].name;
+  renderDots();
+}
+
+function renderDots() {
+  const container = document.getElementById('dots');
+  container.innerHTML = '';
+  PLATFORMS.forEach((_, idx) => {
+    const dot = document.createElement('div');
+    dot.className = idx === current ? 'dot active' : 'dot';
+    container.appendChild(dot);
+  });
 }
 
 document.getElementById('btn-left').addEventListener('click', () => {
@@ -495,66 +498,48 @@ document.getElementById('btn-right').addEventListener('click', () => {
 renderCarousel();
 
 function openPanel(idx) {
-  const platform = PLATFORMS[idx];
-  document.getElementById('panel-icon').innerHTML = uniquifySvg(platform.svg, 'panel');
-  document.getElementById('panel-name').textContent = platform.name;
-  document.getElementById('panel-handle').textContent = platform.handle;
-
+  const p = PLATFORMS[idx];
+  document.getElementById('panel-icon').innerHTML = stampSvg(p.svg, 'panel');
+  document.getElementById('panel-name').textContent = p.name;
+  document.getElementById('panel-handle').textContent = p.handle;
   const btn = document.getElementById('panel-btn');
-  btn.textContent = `Follow us on ${platform.name} →`;
-  btn.href = platform.url;
+  btn.textContent = `Follow Yardi on ${p.name} →`;
+  btn.href = p.url;
 
   const panel = document.getElementById('follow-panel');
   const backdrop = document.getElementById('panel-backdrop');
-
   panel.removeAttribute('aria-hidden');
   backdrop.removeAttribute('aria-hidden');
-
   panel.style.display = 'flex';
   backdrop.classList.add('active');
-  requestAnimationFrame(() => {
-    requestAnimationFrame(() => {
-      panel.classList.add('active');
-    });
-  });
+  requestAnimationFrame(() => requestAnimationFrame(() => panel.classList.add('active')));
 }
 
 function closePanel() {
   const panel = document.getElementById('follow-panel');
   const backdrop = document.getElementById('panel-backdrop');
-
   panel.classList.remove('active');
   backdrop.classList.remove('active');
   panel.setAttribute('aria-hidden', 'true');
   backdrop.setAttribute('aria-hidden', 'true');
-
-  setTimeout(() => {
-    panel.style.display = 'none';
-  }, 320);
+  setTimeout(() => { panel.style.display = 'none'; }, 320);
 }
 
 document.getElementById('panel-backdrop').addEventListener('click', closePanel);
 
 (function attachSwipe() {
-  const track = document.getElementById('coins-track');
   let startX = null;
-
-  track.addEventListener('touchstart', e => {
+  document.querySelector('.coins-track').addEventListener('touchstart', e => {
     startX = e.touches[0].clientX;
   }, { passive: true });
-
-  track.addEventListener('touchend', e => {
+  document.querySelector('.coins-track').addEventListener('touchend', e => {
     if (startX === null) return;
     const dx = e.changedTouches[0].clientX - startX;
     startX = null;
-
     if (Math.abs(dx) < 40) return;
-
-    if (dx < 0) {
-      current = (current + 1) % PLATFORMS.length;
-    } else {
-      current = (current - 1 + PLATFORMS.length) % PLATFORMS.length;
-    }
+    current = dx < 0
+      ? (current + 1) % PLATFORMS.length
+      : (current - 1 + PLATFORMS.length) % PLATFORMS.length;
     renderCarousel();
   }, { passive: true });
 })();
